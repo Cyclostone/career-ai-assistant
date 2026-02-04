@@ -1,3 +1,9 @@
+---
+title: Career-AI-Assistant
+app_file: app.py
+sdk: gradio
+sdk_version: 5.49.1
+---
 # 🤖 Career AI Assistant
 
 An intelligent AI-powered chatbot that acts as your professional alter-ego, answering questions about your career, background, and skills on your website. Built with OpenAI's GPT-4 and deployed on HuggingFace Spaces.
@@ -378,3 +384,4 @@ If you find this project useful, please consider giving it a star! ⭐
 ---
 
 **Made with ❤️ by Arpit Shrotriya**
+Testing Huggingface and Github Sync
