@@ -26,3 +26,4 @@ MODEL = "gpt-4o-mini"
 
 # Paths
 KNOWLEDGE_DIR = "data/knowledge"
+DATABASE_PATH = "Data/leads.db"

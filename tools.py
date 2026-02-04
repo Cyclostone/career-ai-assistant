@@ -6,6 +6,7 @@ Replaces notebook cells 4-14.
 import json
 import requests
 from config import PUSHOVER_USER, PUSHOVER_TOKEN, PUSHOVER_URL
+from database import add_lead, add_knowledge_gap
 
 
 # Cell 4: Push notification function
@@ -30,6 +31,10 @@ def push(message):
 # Record user details
 def record_user_details(email, name="Name not provided", notes="not provided"):
     """Record when a user wants to get in touch."""
+
+    # Save to a database first
+    add_lead(email, name, notes)
+
     push(f"Recording interest from {name} with email {email} and notes {notes}")
     return {"recorded": "ok"}
 
@@ -37,6 +42,10 @@ def record_user_details(email, name="Name not provided", notes="not provided"):
 # Record unknown question
 def record_unknown_question(question):
     """Record a question that couldn't be answered."""
+
+    # Save to database first
+    add_knowledge_gap(question)
+
     push(f"Recording {question} asked that I couldn't answer")
     return {"recorded": "ok"}
 
