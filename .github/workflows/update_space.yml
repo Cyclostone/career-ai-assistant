@@ -21,6 +21,8 @@ jobs:
 
       - name: Track binary files with LFS
         run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
           git lfs track "*.pdf"
           git add .gitattributes
           git diff --cached --quiet || git commit -m "Track PDFs with Git LFS"
