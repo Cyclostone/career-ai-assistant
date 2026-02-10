@@ -1,0 +1,132 @@
+Contact
+arpit.shrotriya5945@gmail.c
+om
+www.linkedin.com/in/arpit-shrotriya
+(LinkedIn)
+Top Skills
+Creative Problem Solving
+Presentation Skills
+Computer Literacy
+Certifications
+Advanced Learning Algorithms
+Baseline: Infrastructure
+Machine Learning Specialization
+Introducing Generative AI with AWS
+Deploying ApplicationsArpit Shrotriya
+Data Engineer & AI/ML Innovator | MS in CS @ NJIT | Architect of
+LLM-Powered Chatbots & Scalable Cloud Pipelines | Open to AI/ML
+Opportunities
+New York, New York, United States
+Summary
+I’m currently on an exciting journey pursuing my Master’s in
+Computer Science at NJIT, where I’m diving deep into the world of
+data and cloud technologies. My passion lies in using these tools to
+tackle complex challenges head-on. With over two years of hands-
+on experience as a Data Engineer and Associate Data Scientist,
+I’ve had the chance to work on some pretty cool projects that have
+shaped my skills in Python, SQL, and ETL processes.
+One of my proudest moments was at Sail Analytics, where I led end-
+to-end data engineering projects that not only supported our analysts
+but also boosted team productivity by 25%. It was rewarding to see
+how optimizing our BigQuery pipeline management made a tangible
+difference. Similarly, during my time at VeeyoTech, I developed
+LLM-powered chatbots that enhanced customer support while fine-
+tuning BERT models—an experience that truly ignited my interest in
+machine learning.
+I believe in the power of collaboration and continuous learning.
+That’s why I love working with diverse teams to create innovative
+solutions. For instance, while automating Excel report generation
+through data pipelines at Sail Analytics, we managed to reduce
+processing times by 40%, which felt like a huge win for everyone
+involved! 
+Outside of work and studies, I enjoy exploring new technologies
+and contributing to open-source projects whenever I can. Whether
+it’s integrating NodeJS with Google Cloud for scalable systems or
+experimenting with IoT integrations during my internship at tronX-
+things, I’m always eager to learn something new.
+If you’re looking for someone who is passionate about data science
+and eager to make an impact through innovative solutions this
+  Page 1 of 4
+   
+summer—or if you just want to chat about tech—feel free to reach
+out via email!
+Skills: Python | SQL | ETL | Google Cloud | BigQuery | Machine
+Learning | Data Engineering | Chatbot Development
+Experience
+VeeyoTech
+Assosicate Data Scientist
+July 2023 - July 2024  (1 year 1 month)
+New Delhi, Delhi, India
+◦ Developed LLM-powered chatbots for customer support, leveraging Gemini
+APIs and fine-tuned
+BERT models.
+◦ Designed and optimized ETL workflows for structured and unstructured data,
+reducing data processing
+time by 40%, enabling faster model training and deployment.
+◦ Built and fine-tuned a large-scale NLP pipeline for text classification and
+sentiment analysis, achieving an 85% accuracy rate on production data.
+◦ Engineered scalable data pipelines using Python, SQL, and AWS Lambda,
+automating the ingestion of 1M+ records per day from multiple data sources,
+enhancing workflow efficiency by 30%.
+Sail Analytics
+Data Engineer
+June 2022 - June 2023  (1 year 1 month)
+Bengaluru, Karnataka, India
+• Led end-to-end data engineering projects, supported data analysts in
+BigQuery pipeline management, data modeling, and actionable insights
+delivery, boosting team productivity by 25%.
+• Built data pipelines for automating Excel report generation and integrated
+auto-mailer capabilities, reducing manual effort by 30% using Python and
+HTML. Designed OCR-based pipelines to extract and filter relevant data from
+client receipt photos, streamlining data processing.
+• Collaborated with the Finance team to execute and maintain ETL pipelines
+for Master and Transactional Data, enabling seamless Power BI and Tableau
+reporting, improving report turnaround by 30%.
+  Page 2 of 4
+   
+• Integrated SAP HANA and Google BigQuery for secure ETL pipelines,
+reducing data transit latency by 40%. Developed Dockerized pipelines to
+process geolocation data from SQL databases, transforming and loading into
+AWS RDS for scalable analysis.
+Roboiotics Services
+Data Analyst 
+February 2022 - May 2022  (4 months)
+• Worked on Creating Customised GUIs by integrating and creating design
+language using Python, PyQT5, SQL and more.
+• Login architecture, Schema Design, Api Integration, UX Functionality
+Implementation were my contributions as a fellow developer.
+Playtonia eSports
+Developer Intern
+August 2021 - January 2022  (6 months)
+• Integrating NodeJS, and MongoDB with Google Cloud Platform to develop a
+scalable monitoring system for the alpha website.
+• Worked with the development team on big query analysis of data
+warehouses used in deployed projects.
+Playtonia eSports
+App Developer Intern
+February 2020 - May 2020  (4 months)
+tronX-things
+Project Intern
+October 2019 - December 2019  (3 months)
+Hyderabad Area, India
+• Implemented Action on Google Custom Skills for Internet of Things
+Integration with compliance in different Situations.
+• Demonstrated Server Simulations by integrating Firebase Realtime Database
+with Arduino by using specified Packages.
+• Worked on Custom Sandboxes to further research the on-device
+computation-intensive and statistical Applications.
+DRDO, Ministry of Defence, Govt. of India
+  Page 3 of 4
+   
+Research Intern
+June 2019 - July 2019  (2 months)
+• Implemented Watermarking Techniques using Digital Image Processing and
+Analytics for further undisclosed Defence Projects.
+• Further Understood and Practiced the working of Gas-lasers to implement
+new ideas in accordance with a new project.
+Education
+New Jersey Institute of Technology
+Master's degree, Computer Science  · (September 2024 - May 2026)
+Guru Gobind Singh Indraprastha University
+Bachelor of Technology, Computer Engineering  · (2017 - 2021)
+  Page 4 of 4

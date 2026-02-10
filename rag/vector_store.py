@@ -60,9 +60,16 @@ def search_similar(query: str, n_results: int = 3) -> Dict:
     """
     collection = get_or_create_collection()
     
+    # Handle empty collection gracefully
+    if collection.count() == 0:
+        return {'documents': [[]], 'metadatas': [[]], 'distances': [[]], 'ids': [[]]}
+    
+    # Don't request more results than available
+    actual_n = min(n_results, collection.count())
+    
     results = collection.query(
         query_texts=[query],
-        n_results=n_results,
+        n_results=actual_n,
         include=["documents", "metadatas", "distances"]
     )
     

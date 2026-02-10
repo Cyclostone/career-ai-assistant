@@ -1,0 +1,84 @@
+ARPIT SHROTRIYA
+2021 Grad, Technical Hoarder & Proud Geek
+arpit.shrotriya5945@gmail.com /ne+91-9810015428 New Delhi, India
+/♀nednhttps:/ /www.linkedin.com/in/arpit-shrotriya/ /♀r@ArpitShrotriya2
+EDUCATION
+B.Tech. in Computer Science
+Bharati Vidyapeeth College Of Engineering
+Ὄ2017–2021 Paschim Vihar, New Delhi
+PROJECTS
+Project PDF To Audiobook
+•A Platform that converts Research Paper PDFs
+into easy-to-use Audiobooks using Google
+Cloud Platform
+•This Project uses: Google Cloud Auto-ML,
+Cloud Vision, gTTS and more
+Project Kaizen
+•A Project to create functionality of using
+mouse with face movement.
+•This Project uses: Python, AutoPy GUI, Image
+Processing
+Project MemsApp
+•A Flutter Application that uploads photos to
+google cloud storage with responsive notiﬁer.
+•Github Link
+SKILLS
+Python SQL PowerBI SparkSQL
+DevOps Big Query ETL Tools
+Data Pipelines Architecture
+Datasets Big data Data Exploration
+Firebase Programming Algorithms
+CERTIFICATIONS
+ἼMachine Learning Specialization
+Issuing Org: Andrew Ng &
+DeepLearning.AI,
+Credential Link
+♂Microsoft Power BI Desktop for Busi-
+ness Intelligence
+Issuing Organisation: Udemy,
+Credential Link
+Advanced Learning Algorithms
+Issuing Org: DeepLearning.AI,
+Credential LinkEXPERIENCE
+Data Engineer
+Sail Analytics
+ὌJune 2022 – Present New Delhi, India
+•Worked with Finance Team on Execution & Maintenance of Data-delivery
+ETL Pipelines to develop eﬃcient dataﬂow of Master & Transactional Data
+for report integration in PowerBI Tableau
+•Worked on Integration of SAP HANA and Google BigQuery for deployment
+of Data-delivery ETL Pipelines to develop secure, eﬃcient transit of data.
+•Worked with Docker Containers on Creating Pipelines to Eﬃciently Extract
+Geolocation Datatables from SQL Database, Transforming Geolocation data
+and loading that into AWS RDS for Further Analysis.
+•Managing project as a whole, on Data Engineer side Overseeing Data Ana-
+lyst side, Data Manipulation, Working with BigQuery Data Dump pipelines,
+Data Modelling, Making sense of Data, Functionality Implementations were
+my contributions as a fellow engineer.
+Data Analyst Intern
+Roboiotics
+ὌApril 2022 – May 2022 New Delhi, India
+•Worked on Creating Customised GUIs by integrating and creating design
+language using Python, PyQT5, SQL and more.
+•Login architecture, Schema Design, Api Integration, UX Functionality Imple-
+mentation were my contributions as a fellow developer.
+Developer Intern
+Playtonia
+ὌAugust 2021–January 2022 Chennai, India
+•Integrating NodeJS ,MongoDB with Google Cloud Platform to develop scal-
+able monitoring system for alpha website.
+•Worked with development team on bigquery analysis of data-warehouses
+used in deployed projects with single-node hadoop cluster.
+Project Intern
+Tron-X Things
+ὌOctober 2019 – November 2019 Hyderabad, India
+VOLUNTEER EXPERIENCE
+Android Head
+Developer Students Club by Google Developers
+ὌAugust 2019 – August 2020 New Delhi, India
+•Carried out Plethora of Workshops and mentored various teams in getting
+familiar with Flutter App Development and implementing new ideas by cre-
+ating intuitive applications under my supervision.
+•Conducted a number of Google Cloud Jams to demonstrate the potential
+of Google Cloud Platform and created collectively diversities of application
+environments to build scalable solutions.

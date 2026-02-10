@@ -79,7 +79,7 @@ def index_knowledge_base(reset: bool=False):
     knowledge_dir = Path(KNOWLEDGE_DIR)
 
     if not knowledge_dir.exists():
-        raise FileNotFoundError(f"Knowledge directory not found: {knowledge_dir}")
+        print(f"⚠️ Knowledge directory not found: {knowledge_dir}")
         return
     
     all_documents = []
@@ -101,7 +101,7 @@ def index_knowledge_base(reset: bool=False):
                 text = load_text_file(str(file_path))
                 source_type = "Text"
             else:
-                raise ValueError(f"Unsupported file type: {file_path.suffix}")
+                print(f"   ⏭️ Skipping unsupported file type: {file_path.suffix}")
                 continue
             
             # Chunk the document

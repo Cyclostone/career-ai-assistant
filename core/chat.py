@@ -2,10 +2,22 @@
 Chat logic - loads knowledge and handles conversation.
 """
 
+import re
 from config import openai_client, MODEL, ASSISTANT_NAME
 from core.tools import tools, handle_tool_calls
 from rag.retriever import retreive_context
 from storage.cache import get_cached_response, set_cached_response
+
+
+def clean_response(text: str) -> str:
+    """Remove raw function call text that the model sometimes leaks into responses."""
+    # Remove <function=...>{...} patterns
+    text = re.sub(r'<function=\w+>\{[^}]*\}', '', text)
+    # Remove any leftover <function=...> tags
+    text = re.sub(r'<function=\w+>', '', text)
+    # Clean up extra whitespace
+    text = re.sub(r'\n{3,}', '\n\n', text).strip()
+    return text
 
 # Build system prompt
 def build_system_prompt(retrieved_context: str = "") -> str:
@@ -80,6 +92,9 @@ def chat(message, history):
             done = True
     
     final_response = response.choices[0].message.content
+    
+    # Clean any leaked function call text from response
+    final_response = clean_response(final_response)
     
     # Cache the response
     set_cached_response(user_query, retrieved_context, final_response)

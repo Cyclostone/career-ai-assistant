@@ -1,0 +1,44 @@
+Arpit Shrotriya Location: Harrison, New Jersey
+LinkedIn |as4893@njit.edu |+1-9734184125
+AI/ML ENGINEER
+Graduate Computer Science student with 3 years of experience in Python, SQL, designing and deploying Machine Learning
+models and ETL pipelines, data warehousing (Google Cloud, AWS), and automating data workflows. Currently pursuing a
+Master’s in Computer Science atNJIT , with a passion for leveraging data and cloud technologies to solve complex challenges,
+Demonstrated ability to handle large-scale data engineering challenges and develop client-focused solutions.
+EDUCATION
+New Jersey Institute Of Technology Newark, New Jersey
+M.S. in Computer Science | GPA : 3.83 September 2024 – May 2026 (Expected)
+Bharati Vidyapeeth College Of Engineering Paschim Vihar, New Delhi
+B. Tech. in Computer Science | GPA : 3.2 Aug 2017 – July 2021
+EXPERIENCE
+AI Industrial Trainer July 2023 – August 2024
+Veeyo Tech New Delhi, India
+•Delivered engaging lectures and training sessions to over 100 students on Python, Machine Learning
+fundamentals , and advanced topics like Anomaly Detection and Natural Language Processing. This instruction
+significantly enhanced students’ understanding and practical skills, with 90% of participants demonstrating
+improved performance in hands-on projects and assessments.
+•Taught advanced Blockchain technology to over 50 students , covering Smart Contracts, Solidity basics, the
+history of Blockchain, and practical applications. This training equipped participants with the skills to innovate and
+contribute effectively to the industry, leading to a 20% increase in hands-on project completions.
+Data Engineer June 2022 – June 2023
+Sail Analytics New Delhi, India
+•Built data pipelines to automatically create Excel files and send emails to clients using Python and HTML ,
+streamlining workflows and reducing manual work by 30%.
+•Worked with Python OCR packages , extracting key information like total amount, date, and receipt ID from over
+1,000 receipt photos with 95% accuracy , delivering valuable data to clients quickly.
+•Developed ETL pipelines for Master and Transactional data, improving data consolidation for reports in PowerBI
+and Tableau, leading to a 40% increase in report generation efficiency
+•Integrated SAP HANA and Google BigQuery , enabling secure data movement for the deployment of Data-delivery
+ETL pipelines, resulting in a 20% reduction in data transfer time.
+Data Analyst February 2022 – May 2022
+Roboiotics New Delhi, India
+•Worked on creating customized GUIs by integrating and developing design languages using Python, PyQT5, and
+SQL , resulting in a 25% improvement in user interaction efficiency and delivering tailored solutions to meet
+client-specific requirements.
+TECHNICAL SKILLS: MACHINE LEARNING, PYTHON, SQL, POWER BI, PANDAS, TENSORflOW, GOOGLE BIGQUERY
+PROJECTS
+Skill Recommender With Azure Open AI Flask, Azure OpenAI API, YouT ube Data API, HTML/CSS Source Code
+•Developed a Flask-based application using Azure OpenAI and YouTube Data API to recommend skills by comparing
+resume content with trending market skills for a target job title.
+Columbia-Asia-Hospital-Data-Analysis Power BI and DAX functions, Git Source Code
+•Project focuses on optimizing patient care, assessing financial health, improving efficiency and strategic decisions
