@@ -15,21 +15,14 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Install Git LFS
-        run: |
-          git lfs install
-
-      - name: Track binary files with LFS
-        run: |
-          git config user.email "github-actions@github.com"
-          git config user.name "GitHub Actions"
-          git lfs track "*.pdf"
-          git add .gitattributes
-          git diff --cached --quiet || git commit -m "Track PDFs with Git LFS"
-
-      - name: Push to HuggingFace Space
+      - name: Remove binary files from history and push to HuggingFace
         env:
           HF_TOKEN: ${{ secrets.hf_token }}
         run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
+          # Remove PDFs from git tracking (keep in .gitignore for HF)
+          git rm -r --cached data/knowledge/*.pdf 2>/dev/null || true
+          git commit -m "Exclude PDFs for HuggingFace deploy" --allow-empty
           git remote add space https://Cyclostone5945:$HF_TOKEN@huggingface.co/spaces/Cyclostone5945/Career-AI-Assistant || true
           git push space main --force
