@@ -3,6 +3,7 @@ Chat logic - loads knowledge and handles conversation.
 """
 
 import re
+from openai import BadRequestError
 from config import openai_client, MODEL, ASSISTANT_NAME
 from core.tools import tools, handle_tool_calls
 from rag.retriever import retreive_context
@@ -74,11 +75,22 @@ def chat(message, history):
     
     done = False
     while not done:
-        response = openai_client.chat.completions.create(
-            model=MODEL,
-            messages=messages,
-            tools=tools
-        )
+        try:
+            response = openai_client.chat.completions.create(
+                model=MODEL,
+                messages=messages,
+                tools=tools
+            )
+        except BadRequestError as e:
+            # Groq sometimes fails with tool_use_failed when model outputs raw function text
+            # Retry without tools to get a normal response
+            print(f"⚠️ Tool use failed, retrying without tools: {e}")
+            response = openai_client.chat.completions.create(
+                model=MODEL,
+                messages=messages
+            )
+            done = True
+            break
         
         finish_reason = response.choices[0].finish_reason
         
