@@ -15,6 +15,16 @@ jobs:
           fetch-depth: 0
           lfs: true
 
+      - name: Install Git LFS
+        run: |
+          git lfs install
+
+      - name: Track binary files with LFS
+        run: |
+          git lfs track "*.pdf"
+          git add .gitattributes
+          git diff --cached --quiet || git commit -m "Track PDFs with Git LFS"
+
       - name: Push to HuggingFace Space
         env:
           HF_TOKEN: ${{ secrets.hf_token }}
