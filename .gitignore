@@ -11,6 +11,7 @@ __pycache__/
 .Python
 env/
 venv/
+.venv/
 ENV/
 build/
 dist/
@@ -20,6 +21,7 @@ dist/
 # IDE
 .vscode/
 .idea/
+.windsurf/
 *.swp
 *.swo
 *~
@@ -34,10 +36,14 @@ flagged/
 # Logs
 *.log
 
-# Database (if you add SQLite later)
+# Database
 *.db
 *.sqlite
 *.sqlite3
+
+# Runtime data
+data/cache/
+data/chroma_db/
 
 # Personal knowledge files (optional - uncomment if you don't want to commit)
 # data/knowledge/linkedin.pdf

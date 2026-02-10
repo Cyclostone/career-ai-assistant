@@ -6,64 +6,59 @@ sdk_version: 5.49.1
 ---
 # 🤖 Career AI Assistant
 
-An intelligent AI-powered chatbot that acts as your professional alter-ego, answering questions about your career, background, and skills on your website. Built with OpenAI's GPT-4 and deployed on HuggingFace Spaces.
+An intelligent AI-powered career chatbot with RAG, semantic caching, and an embeddable portfolio widget. Uses Groq's Llama 3.3 70B for blazing-fast, free inference. Deployed on HuggingFace Spaces.
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-HuggingFace-blue)](https://huggingface.co/spaces/Cyclostone5945/Career-AI-Assistant)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-green.svg)](https://openai.com/)
+[![Groq](https://img.shields.io/badge/Groq-Llama%203.3%2070B-green.svg)](https://groq.com/)
 [![Gradio](https://img.shields.io/badge/Gradio-5.0+-orange.svg)](https://gradio.app/)
 
 ---
 
 ## 🌟 Features
 
-- **🎯 Personalized Responses** - Trained on your LinkedIn profile and career summary to answer questions authentically
-- **📧 Lead Capture** - Automatically records visitor contact information when they express interest
-- **� Persistent Storage** - SQLite database ensures no lead is ever lost (Phase 2)
-- **�📊 Knowledge Gap Tracking** - Logs unanswered questions to help improve your knowledge base
-- **🔔 Real-time Notifications** - Instant push notifications via Pushover when leads are captured
-- **📈 Analytics Ready** - View historical data and statistics with built-in admin tools
-- **⚡ Fast & Scalable** - Deployed on HuggingFace Spaces with automatic scaling
-- **🛠️ Tool Use** - Leverages OpenAI's function calling for intelligent action execution
+- **🧠 RAG Pipeline** - ChromaDB vector database with semantic search for accurate, context-aware responses
+- **💰 Semantic Caching** - DiskCache-based caching reduces API calls and costs by serving repeated queries instantly
+- **� Embeddable Widget** - Beautiful chat widget with FastAPI backend for portfolio integration
+- **�🎯 Personalized Responses** - Trained on LinkedIn profile and career documents
+- **📧 Lead Capture** - Automatically records visitor contact information via tool calling
+- **💾 Persistent Storage** - SQLite database for leads, knowledge gaps, and cache analytics
+- **🔔 Real-time Notifications** - Instant push notifications via Pushover
+- **⚡ Blazing Fast** - Powered by Groq's LPU hardware for millisecond inference
+- **🆓 Zero API Cost** - Uses Groq's free tier with Llama 3.3 70B model
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    User Interface                       │
-│                  (Gradio Chat Widget)                   │
-└─────────────────┬───────────────────────────────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────────────────────┐
-│                  Chat Service (chat.py)                 │
-│  • Loads knowledge (LinkedIn PDF + Summary)             │
-│  • Builds system prompt with context                    │
-│  • Manages conversation loop                            │
-└─────────────────┬───────────────────────────────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────────────────────┐
-│              OpenAI GPT-4 (via config.py)               │
-│  • Model: gpt-4o-mini                                   │
-│  • Function calling enabled                             │
-└─────────────────┬───────────────────────────────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────────────────────┐
-│                  Tools (tools.py)                       │
-│  • record_user_details() - Capture leads                │
-│  • record_unknown_question() - Track knowledge gaps     │
-└─────────────────┬───────────────────────────────────────┘
-                  │
-                  ▼
-┌─────────────────────────────────────────────────────────┐
-│            Database (database.py) + Pushover            │
-│  • SQLite for permanent storage                         │
-│  • Push notifications for real-time alerts              │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│              User Interfaces                                  │
+│   Gradio Chat UI  │  Embeddable Widget  │  FastAPI Docs      │
+└────────┬──────────┴─────────┬───────────┴────────────────────┘
+         │                    │
+         ▼                    ▼
+┌──────────────────────────────────────────────────────────────┐
+│                  Core Chat Service                            │
+│  • Semantic cache check (DiskCache)                          │
+│  • RAG context retrieval (ChromaDB)                          │
+│  • Dynamic system prompt construction                        │
+│  • Tool calling (lead capture, knowledge gaps)               │
+└────────────────────────┬─────────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────────┐
+│              Groq LPU Cloud (via OpenAI-compatible API)       │
+│  • Model: llama-3.3-70b-versatile                            │
+│  • Function calling enabled                                   │
+│  • Free tier - no API costs                                   │
+└────────────────────────┬─────────────────────────────────────┘
+                         │
+                         ▼
+┌──────────────────────────────────────────────────────────────┐
+│                  Storage Layer                                 │
+│  SQLite (leads, gaps, analytics)  │  DiskCache  │  ChromaDB  │
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -72,21 +67,43 @@ An intelligent AI-powered chatbot that acts as your professional alter-ego, answ
 
 ```
 project_career_ai_assistant/
-├── app.py                  # Gradio entry point
-├── config.py               # Configuration & OpenAI client
-├── chat.py                 # Main conversation logic
-├── tools.py                # AI tool functions
-├── database.py             # Database operations (SQLite)
-├── view_data.py            # Admin script to view stored data
-├── requirements.txt        # Python dependencies
-├── .env                    # Environment variables (not in repo)
-├── .gitignore              # Git ignore rules
-├── data/
-│   ├── knowledge/
-│   │   ├── linkedin.pdf    # Your LinkedIn profile
-│   │   └── summary.txt     # Career summary
-│   └── leads.db            # SQLite database (auto-created)
-└── README.md
+├── app.py                      # Gradio entry point
+├── api_server.py               # FastAPI server for widget
+├── config.py                   # Configuration & Groq client
+├── requirements.txt            # Python dependencies
+├── README.md
+├── .env                        # Environment variables (not in repo)
+├── .gitignore
+│
+├── core/                       # Core chat logic
+│   ├── __init__.py
+│   ├── chat.py                 # Conversation logic with RAG + caching
+│   └── tools.py                # AI tool functions (lead capture, etc.)
+│
+├── rag/                        # RAG pipeline
+│   ├── __init__.py
+│   ├── vector_store.py         # ChromaDB operations
+│   ├── knowledge_indexer.py    # Document chunking & indexing
+│   └── retriever.py            # Semantic search retrieval
+│
+├── storage/                    # Data persistence
+│   ├── __init__.py
+│   ├── database.py             # SQLite operations
+│   └── cache.py                # Semantic caching (DiskCache)
+│
+├── utils/                      # Utility scripts
+│   ├── __init__.py
+│   └── view_data.py            # Admin data viewer
+│
+├── widget/                     # Embeddable portfolio widget
+│   └── chat-widget.html        # Standalone chat widget
+│
+└── data/                       # Runtime data (gitignored)
+    ├── knowledge/              # Knowledge base documents
+    │   ├── linkedin.pdf
+    │   └── summary.txt
+    ├── cache/                  # DiskCache storage
+    └── chroma_db/              # ChromaDB vector database
 ```
 
 ---
@@ -96,19 +113,21 @@ project_career_ai_assistant/
 ### Prerequisites
 
 - Python 3.10+
-- OpenAI API key
+- Groq API key (free at [console.groq.com](https://console.groq.com))
 - (Optional) Pushover account for notifications
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/career-ai-assistant.git
+   git clone https://github.com/Cyclostone/career-ai-assistant.git
    cd career-ai-assistant
    ```
 
-2. **Install dependencies**
+2. **Create virtual environment & install dependencies**
    ```bash
+   python -m venv .venv
+   source .venv/bin/activate
    pip install -r requirements.txt
    ```
 
@@ -116,234 +135,167 @@ project_career_ai_assistant/
    
    Create a `.env` file in the project root:
    ```bash
-   OPENAI_API_KEY=sk-proj-your-key-here
-   PUSHOVER_USER=your-pushover-user-key  # Optional
-   PUSHOVER_TOKEN=your-pushover-token    # Optional
+   GROQ_API_KEY=gsk_your_groq_api_key_here
+   PUSHOVER_USER=your-pushover-user-key    # Optional
+   PUSHOVER_TOKEN=your-pushover-token      # Optional
    ```
 
 4. **Add your knowledge files**
    
-   Place these files in `data/knowledge/`:
+   Place documents in `data/knowledge/`:
    - `linkedin.pdf` - Export your LinkedIn profile as PDF
-   - `summary.txt` - Write a brief career summary
+   - `summary.txt` - Career summary
+   - Any `.pdf`, `.txt`, or `.md` files
 
-5. **Run locally**
+5. **Index the knowledge base**
+   ```bash
+   python -m rag.knowledge_indexer
+   ```
+
+6. **Run the Gradio app**
    ```bash
    python app.py
    ```
-   
    Open http://127.0.0.1:7860 in your browser
+
+7. **Run the FastAPI server** (for widget)
+   ```bash
+   python api_server.py
+   ```
+   API docs at http://127.0.0.1:8000/docs
 
 ---
 
-## 🌐 Deployment
+## 🎨 Embeddable Widget
 
-### HuggingFace Spaces (Recommended)
+Drop the chat widget into any portfolio website:
 
-1. **Install HuggingFace CLI**
-   ```bash
-   uv tool install 'huggingface_hub[cli]'
-   hf auth login --token YOUR_HF_TOKEN
-   ```
+1. Start the FastAPI server: `python api_server.py`
+2. Open `widget/chat-widget.html` in a browser
+3. Update `API_URL` in the widget to point to your deployed server
 
-2. **Deploy**
-   ```bash
-   uv run gradio deploy
-   ```
-
-3. **Configure secrets in HuggingFace**
-   - `OPENAI_API_KEY`
-   - `PUSHOVER_USER` (optional)
-   - `PUSHOVER_TOKEN` (optional)
-
-Your Space will be live at: `https://huggingface.co/spaces/YOUR_USERNAME/career-ai-assistant`
+The widget features:
+- Modern UI with typing indicators
+- Conversation history
+- Error handling with retry
+- Fully responsive design
 
 ---
 
 ## 🛠️ How It Works
 
-### 1. Knowledge Loading
-The system loads your professional background from:
-- **LinkedIn PDF** - Parsed using `pypdf` library
-- **Summary text** - Plain text career overview
+### 1. RAG Pipeline
+```
+User Query → ChromaDB Semantic Search → Top-K Relevant Chunks → Context for LLM
+```
+- Documents are chunked (500 chars, 50 overlap) and embedded in ChromaDB
+- Cosine similarity search retrieves the most relevant context
+- Source attribution included in responses
 
-### 2. System Prompt Construction
-A dynamic prompt is built that:
-- Instructs the AI to act as you
-- Includes your background context
-- Defines tool usage guidelines
-- Sets professional tone
+### 2. Semantic Caching
+```
+User Query → Generate Cache Key → Check DiskCache → HIT: Return cached | MISS: Call LLM
+```
+- SHA256 hash of query + context as cache key
+- 7-day TTL with LRU eviction
+- Cache analytics tracked in SQLite
 
 ### 3. Conversation Loop
 ```python
-while not done:
-    response = openai.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=messages,
-        tools=tools  # Available functions
-    )
-    
-    if finish_reason == "tool_calls":
-        # Execute tools (e.g., record_user_details)
-        results = handle_tool_calls(tool_calls)
-        messages.extend(results)
-    else:
-        done = True  # Return final response
+# Check cache first
+cached = get_cached_response(query, context)
+if cached:
+    return cached['response']
+
+# RAG-augmented LLM call
+response = groq_client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=messages,
+    tools=tools
+)
 ```
 
 ### 4. Tool Execution
-When the AI needs to:
-- **Capture a lead** → Calls `record_user_details(email, name, notes)`
-- **Log unknown question** → Calls `record_unknown_question(question)`
-
-Both save to database first (permanent storage), then send push notifications via Pushover.
+- **Capture a lead** → `record_user_details(email, name, notes)` → SQLite + Push notification
+- **Log unknown question** → `record_unknown_question(question)` → SQLite + Push notification
 
 ---
 
-## � Database & Lead Management (Phase 2)
-
-### Persistent Storage
-
-All leads and knowledge gaps are now permanently stored in a SQLite database (`data/leads.db`):
-
-**Tables:**
-- `leads` - Contact information with timestamps
-- `knowledge_gaps` - Unanswered questions for improvement
-- `conversations` - Full conversation history (future use)
-
-### Viewing Your Data
-
-Use the included admin script to view stored data:
+## 📊 Admin Tools
 
 ```bash
-# View statistics
-python view_data.py stats
+# View database statistics
+python -m utils.view_data stats
 
-# View all leads
-python view_data.py leads
+# View all captured leads
+python -m utils.view_data leads
 
 # View knowledge gaps
-python view_data.py gaps
-```
+python -m utils.view_data gaps
 
-**Example Output:**
-```
-📊 Database Statistics
-==================================================
-Total Leads: 15
-Total Knowledge Gaps: 3
-==================================================
-```
+# View cache statistics
+python -c "from storage.cache import get_cache_stats; print(get_cache_stats())"
 
-### Data Flow
-
+# View cache analytics
+python -c "from storage.database import get_cache_analytics; print(get_cache_analytics())"
 ```
-User provides email → Save to Database (permanent) → Send Pushover notification
-```
-
-**Benefits:**
-- ✅ Never lose leads even if notifications fail
-- ✅ Historical data for analytics
-- ✅ Track which questions need better answers
-- ✅ Foundation for future CRM integration
 
 ---
 
-## �🔧 Configuration
+## 🔧 Configuration
 
 ### Model Settings (`config.py`)
 
 ```python
-MODEL = "gpt-4o-mini"           # OpenAI model
-ASSISTANT_NAME = "Your Name"    # Your identity
-KNOWLEDGE_DIR = "data/knowledge" # Knowledge base path
-DATABASE_PATH = "data/leads.db" # SQLite database path
+# Groq client (OpenAI-compatible API)
+openai_client = OpenAI(
+    api_key=os.getenv("GROQ_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
+)
+
+MODEL = "llama-3.3-70b-versatile"  # Free Groq model
+ASSISTANT_NAME = "Arpit Shrotriya"
+KNOWLEDGE_DIR = "data/knowledge"
+DATABASE_PATH = "data/leads.db"
+VECTOR_DB_DIR = "data/chroma_db"
 ```
-
-### Tool Schemas (`tools.py`)
-
-Tools are defined with OpenAI function calling format:
-```python
-{
-    "name": "record_user_details",
-    "description": "Use this tool to record...",
-    "parameters": {
-        "type": "object",
-        "properties": {...},
-        "required": ["email"]
-    }
-}
-```
-
----
-
-## 📊 Usage Examples
-
-### Example Conversation
-
-**User:** "What's your experience with Python?"
-
-**AI:** "I have extensive experience with Python, particularly in AI/ML development. I've worked on projects involving OpenAI's GPT models, built conversational agents, and deployed applications on cloud platforms..."
-
-**User:** "I'd love to discuss a project. My email is john@example.com"
-
-**AI:** "Thank you, John! I've recorded your information and will reach out soon."
-
-*→ Lead saved to database (ID: 42)*  
-*→ Push notification sent: "Recording interest from John with email john@example.com"*
 
 ---
 
 ## 🔐 Security
 
-- ✅ API keys stored in environment variables (never committed)
-- ✅ `.env` file gitignored
-- ✅ HuggingFace Spaces secrets encrypted
-- ✅ Input validation on tool parameters
+- API keys stored in environment variables (never committed)
+- `.env` file gitignored
+- HuggingFace Spaces secrets encrypted
+- CORS configured for widget API
+- Input validation on all endpoints
 
 ---
 
-## 📈 Future Enhancements
+## 📈 Development Phases
 
-### ✅ Phase 2: Database Integration (COMPLETED)
+### Phase 1: Core Chat Bot
+- Gradio chat interface
+- OpenAI GPT-4o-mini integration
+- LinkedIn PDF knowledge loading
+- Tool calling for lead capture
 
-- ✅ SQLite database for lead persistence
-- ✅ Admin viewer script (`view_data.py`)
-- ✅ Knowledge gap tracking
-- ✅ Conversation history foundation
+### Phase 2: Database Integration
+- SQLite persistent storage
+- Lead management & knowledge gap tracking
+- Push notifications via Pushover
+- Admin viewer script
 
-### Planned Improvements (Phase 3+)
-
-1. **🧠 RAG (Retrieval-Augmented Generation)**
-   - ChromaDB vector store for better knowledge retrieval
-   - Semantic search over documents
-   - Source attribution in responses
-
-2. **💰 Cost Optimization**
-   - Semantic caching (Redis) for common questions
-   - Model routing (cheap vs. expensive models)
-   - Token usage monitoring
-
-3. **📧 Enhanced Notifications**
-   - Email via AWS SES/SendGrid
-   - Slack/Discord webhooks
-   - Batched daily digests
-
-4. **🎨 Enhanced UI**
-   - Custom Gradio theme
-   - Embedded widget for portfolio website
-   - Mobile-responsive design
-
-5. **🔌 Portfolio Integration**
-   - FastAPI backend for external calls
-   - Embeddable JavaScript widget
-   - Session tracking and analytics
+### Phase 3: RAG, Caching & Widget (Current)
+- ChromaDB vector database with semantic search
+- DiskCache semantic caching for cost optimization
+- Embeddable portfolio widget with FastAPI backend
+- Migration to Groq Llama 3.3 70B (free inference)
+- Organized modular codebase
 
 ---
 
 ## 🤝 Contributing
-
-Contributions are welcome! Please:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -363,25 +315,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Built as part of the [Agentic AI Course](https://github.com/ed-donner/agents)
 - Inspired by Ed Donner's Lab 4 - Career Conversation project
-- Powered by [OpenAI](https://openai.com/), [Gradio](https://gradio.app/), and [HuggingFace](https://huggingface.co/)
+- Powered by [Groq](https://groq.com/), [ChromaDB](https://www.trychroma.com/), [Gradio](https://gradio.app/), and [HuggingFace](https://huggingface.co/)
 
 ---
 
 ## 📞 Contact
 
 **Arpit Shrotriya**
-- 🌐 Portfolio: [Your Website]
-- 💼 LinkedIn: [Your LinkedIn]
 - 📧 Email: arpit.shrotriya5945@gmail.com
 - 🤖 Try the AI: [Career AI Assistant](https://huggingface.co/spaces/Cyclostone5945/Career-AI-Assistant)
 
 ---
 
-## ⭐ Star History
-
-If you find this project useful, please consider giving it a star! ⭐
-
----
-
 **Made with ❤️ by Arpit Shrotriya**
-Testing Huggingface and Github Sync

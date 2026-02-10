@@ -6,7 +6,7 @@ Replaces notebook cells 4-14.
 import json
 import requests
 from config import PUSHOVER_USER, PUSHOVER_TOKEN, PUSHOVER_URL
-from database import add_lead, add_knowledge_gap
+from storage.database import add_lead, add_knowledge_gap
 
 
 # Cell 4: Push notification function

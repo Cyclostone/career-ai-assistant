@@ -10,7 +10,10 @@ from openai import OpenAI
 load_dotenv(override=True)
 
 # OpenAI client
-openai_client = OpenAI()
+openai_client = OpenAI(
+    api_key=os.getenv("GROQ_API_KEY"),
+    base_url="https://api.groq.com/openai/v1"
+)
 
 # Pushover credentials
 PUSHOVER_USER = os.getenv("PUSHOVER_USER")
@@ -22,8 +25,9 @@ ASSISTANT_NAME = "Arpit Shrotriya"
 ASSISTANT_EMAIL = "arpit.shrotriya5945@gmail.com"
 
 # Model settings
-MODEL = "gpt-4o-mini"
+MODEL = "llama-3.3-70b-versatile"
 
 # Paths
 KNOWLEDGE_DIR = "data/knowledge"
-DATABASE_PATH = "Data/leads.db"
+DATABASE_PATH = "data/leads.db"
+VECTOR_DB_DIR = "data/chroma_db"

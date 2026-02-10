@@ -52,6 +52,15 @@ def _create_tables(conn):
         )
     """)
 
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS cache_stats (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        cache_hit BOOLEAN NOT NULL,
+        query TEXT NOT NULL,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+
     conn.commit()
 
 def add_lead(email, name="Name not provided", notes="not provided"):
@@ -161,4 +170,41 @@ def get_stats():
         "total_leads": lead_count,
         "total_knowledge_gaps": gap_count
     }
+
+def add_cache_stat(cache_hit: bool, query: str):
+    """Record cache hit/miss statistics."""
+    conn = get_connection()
+    cursor = conn.cursor()
     
+    cursor.execute("""
+        INSERT INTO cache_stats (cache_hit, query, timestamp)
+        VALUES (?, ?, datetime('now'))
+    """, (cache_hit, query))
+    
+    conn.commit()
+    conn.close()
+
+
+def get_cache_analytics():
+    """Get cache performance analytics."""
+    conn = get_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+        SELECT 
+            COUNT(*) as total_queries,
+            SUM(CASE WHEN cache_hit = 1 THEN 1 ELSE 0 END) as hits,
+            SUM(CASE WHEN cache_hit = 0 THEN 1 ELSE 0 END) as misses,
+            ROUND(100.0 * SUM(CASE WHEN cache_hit = 1 THEN 1 ELSE 0 END) / COUNT(*), 2) as hit_rate
+        FROM cache_stats
+    """)
+    
+    result = cursor.fetchone()
+    conn.close()
+    
+    return {
+        "total_queries": result[0],
+        "cache_hits": result[1],
+        "cache_misses": result[2],
+        "hit_rate_percent": result[3]
+    }

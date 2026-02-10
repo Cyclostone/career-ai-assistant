@@ -1,13 +1,13 @@
 """
 Simple script to view data from the database.
 
-Usage: python view_data.py leads
-       python view_data.py knowledge_gaps
-       python view_data.py stats
+Usage: python -m utils.view_data leads
+       python -m utils.view_data knowledge_gaps
+       python -m utils.view_data stats
 """
 
 import sys
-from database import get_all_leads, get_all_knowledge_gaps, get_stats
+from storage.database import get_all_leads, get_all_knowledge_gaps, get_stats
 from datetime import datetime
 
 def view_leads():
@@ -58,7 +58,7 @@ def view_stats():
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python view_data.py [leads|gaps|stats]")
+        print("Usage: python -m utils.view_data [leads|gaps|stats]")
         sys.exit(1)
 
     command = sys.argv[1].lower()
