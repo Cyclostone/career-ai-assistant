@@ -7,4 +7,4 @@ from core.chat import chat
 
 # Launch Gradio interface
 if __name__ == "__main__":
-    gr.ChatInterface(chat).launch()
+    gr.ChatInterface(chat, type="messages").launch()
